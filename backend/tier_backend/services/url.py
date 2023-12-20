@@ -40,7 +40,7 @@ def create_and_insert_short_url(url: str) -> str:
 def get_clean_url(url: str, only_internal: bool = False) -> str:
     parsed = urlparse(url)
     clean_url = parsed.geturl().strip(parsed.scheme).strip("://").strip("www.")
-    if misses_dot(url, parsed.netloc) or only_internal and not is_internal(clean_url):
+    if misses_dot(url, parsed.netloc) or (only_internal and not is_internal(clean_url)):
         raise ValueError("Invalid URL.")
     return clean_url
 
